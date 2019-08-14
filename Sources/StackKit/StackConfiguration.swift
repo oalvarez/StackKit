@@ -2,7 +2,7 @@
 
 import CoreGraphics
 
-struct StackConfiguration {
+public struct StackConfiguration {
   var firstScale:      CGFloat = 0.9
   var secondScale:     CGFloat = 0.8
   var dragOffset:      CGFloat = 45
@@ -16,4 +16,6 @@ struct StackConfiguration {
     case vertical
     case free
   }
+  
+  public init() { }
 }

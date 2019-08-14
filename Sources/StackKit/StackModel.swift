@@ -9,9 +9,10 @@ public class StackModel<CardPresentable: Identifiable>: ObservableObject {
   @Published var status: StackStatus = .unselected
   @Published var positions: [CardPresentable.ID: CGSize]
   
-  var configuration = StackConfiguration()
+  var configuration: StackConfiguration
   
-  public init(with elements: [CardPresentable]) {
+  public init(with elements: [CardPresentable], and configuration: StackConfiguration) {
+    self.configuration = configuration
     self.elements = elements
     positions = Dictionary(grouping: elements, by: { $0.id })
       .mapValues { _ in .zero }

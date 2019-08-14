@@ -3,13 +3,13 @@
 import SwiftUI
 import Combine
 
-public struct Stack<CardView: Card, CardModel>: View where CardView.ViewModel == CardModel {
-  @ObservedObject var viewModel: StackModel<CardModel.Model>
+public struct Stack<CardView: Card>: View {
+  @ObservedObject var viewModel: StackModel<CardView.ViewModel.Model>
   
   public var body: some View {
     ZStack {
       ForEach(viewModel.elements) { element in
-        return CardView(with: CardModel(with: element))
+        CardView(with: CardView.ViewModel(with: element))
           .scaleEffect(self.viewModel.scaleEffect(from: element))
           .offset(self.viewModel.position(for: element))
           //.padding(self.viewModel.padding)
@@ -31,12 +31,13 @@ public struct Stack<CardView: Card, CardModel>: View where CardView.ViewModel ==
     }
   }
   
-  public init(viewModel: StackModel<CardModel.Model>) {
+  public init(viewModel: StackModel<CardView.ViewModel.Model>) {
     self.viewModel = viewModel
   }
   
-  public init(_ elements: [CardModel.Model]) {
-    self.init(viewModel: StackModel(with: elements))
+  public init(with configuration: StackConfiguration = StackConfiguration(),
+              _ elements: [CardView.ViewModel.Model]) {
+    self.init(viewModel: StackModel(with: elements, and: configuration))
   }
 
 
