@@ -3,15 +3,15 @@
 import CoreGraphics
 
 public struct StackConfiguration {
-  var firstScale:      CGFloat = 0.9
-  var secondScale:     CGFloat = 0.8
-  var dragOffset:      CGFloat = 45
-  var minimumVelocity: CGFloat = 350
-  var maximumDistance: CGFloat = 450
-  var movementType:    MovementType = .free
-  var disabled :       Bool = false
+  public var firstScale:      CGFloat = 0.9
+  public var secondScale:     CGFloat = 0.8
+  public var dragOffset:      CGFloat = 45
+  public var minimumVelocity: CGFloat = 350
+  public var maximumDistance: CGFloat = 450
+  public var movementType:    MovementType = .free
+  public var disabled :       Bool = false
   
-  enum MovementType {
+  public enum MovementType {
     case horizontal
     case vertical
     case free
@@ -25,5 +25,19 @@ public struct StackConfiguration {
     }
   }
   
-  public init() { }
+  public init(firstScale:      CGFloat = 0.9,
+              secondScale:     CGFloat = 0.8,
+              dragOffset:      CGFloat = 45,
+              minimumVelocity: CGFloat = 350,
+              maximumDistance: CGFloat = 450,
+              movementType:    MovementType = .free,
+              disabled :       Bool = false) {
+    self.firstScale = firstScale
+    self.secondScale = secondScale
+    self.dragOffset = dragOffset
+    self.minimumVelocity = minimumVelocity
+    self.maximumDistance = maximumDistance
+    self.movementType = movementType
+    self.disabled = disabled
+  }
 }
