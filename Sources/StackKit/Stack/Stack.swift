@@ -26,9 +26,7 @@ public struct Stack<CardView: Card>: View {
                 .release(element,
                          at: value.predictedEndTranslation)
             }
-        )
-        .delayTouches()
-        .disabled(self.viewModel.dragIsDisabled)
+          ).disabled(self.viewModel.dragIsDisabled)
       }
     }
   }
