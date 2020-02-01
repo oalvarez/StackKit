@@ -12,7 +12,7 @@ public struct Stack<CardView: Card>: View {
         CardView(with: CardView.ViewModel(with: element))
           .scaleEffect(self.viewModel.scaleEffect(from: element))
           .offset(self.viewModel.position(for: element))
-          //.padding(self.viewModel.padding)
+          //.rotationEffect(<#T##angle: Angle##Angle#>)
           .animation(.easeOut)
           .gesture(
             DragGesture()
@@ -39,6 +39,4 @@ public struct Stack<CardView: Card>: View {
               _ elements: [CardView.ViewModel.Model]) {
     self.init(viewModel: StackModel(with: elements, and: configuration))
   }
-
-
 }

@@ -54,13 +54,8 @@ public class StackModel<CardPresentable: Identifiable>: ObservableObject {
   //MARK: - User Interaction
   
   func updatePosition(of element: CardPresentable, to position: CGSize) {
-    var newPosition = position
-    switch configuration.movementType {
-    case .horizontal: newPosition.height = 0
-    case .vertical: newPosition.width = 0
-    case .free: ()
-    }
-    positions[element.id] = newPosition
+    positions[element.id] =
+      configuration.movementType.finalPosition(with: position)
   }
   
   func release(_ element: CardPresentable, at position: CGSize) {

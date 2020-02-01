@@ -16,4 +16,16 @@ public extension CGSize {
     }
     return normalized
   }
+  
+  var horizontal: CGSize {
+    var horizontal = self
+    horizontal.height = 0
+    return horizontal
+  }
+  
+  var vertical: CGSize {
+    var vertical = self
+    vertical.width = 0
+    return vertical
+  }
 }

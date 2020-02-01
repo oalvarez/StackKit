@@ -9,12 +9,20 @@ public struct StackConfiguration {
   var minimumVelocity: CGFloat = 350
   var maximumDistance: CGFloat = 450
   var movementType:    MovementType = .free
-  var disabled :         Bool = false
+  var disabled :       Bool = false
   
   enum MovementType {
     case horizontal
     case vertical
     case free
+    
+    func finalPosition(with position: CGSize) -> CGSize {
+      switch self {
+      case .horizontal: return position.horizontal
+      case .vertical:   return position.vertical
+      case .free:       return position
+      }
+    }
   }
   
   public init() { }
