@@ -12,20 +12,14 @@ public struct Stack<CardView: Card>: View {
         CardView(with: CardView.ViewModel(with: element))
           .scaleEffect(self.viewModel.scaleEffect(from: element))
           .offset(self.viewModel.position(for: element))
+          .transition(AnyTransition.offset(x: -350, y: 0))
           //.rotationEffect(<#T##angle: Angle##Angle#>)
           .animation(.easeOut)
+          .onTapGesture {
+            self.viewModel.tapAction(element)
+          }
           .gesture(
-            DragGesture()
-              .onChanged { value in
-                self.viewModel
-                  .updatePosition(of: element,
-                                  to: value.translation)
-            }
-            .onEnded { value in
-              self.viewModel
-                .release(element,
-                         at: value.predictedEndTranslation)
-            }
+            self.viewModel.dragGesture(for: element)
           ).disabled(self.viewModel.dragIsDisabled)
       }
     }

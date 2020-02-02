@@ -78,6 +78,30 @@ public class StackModel<CardPresentable: Identifiable>: ObservableObject {
   var dragIsDisabled: Bool {
     configuration.disabled
   }
+  
+  func dragGesture(for element: CardPresentable) -> some Gesture {
+    if configuration.interaction == .tap {
+      return
+        DragGesture().onChanged({ _ in })
+        .onEnded { _ in }
+    }
+    return
+      DragGesture()
+        .onChanged { value in
+          self.updatePosition(of: element,
+                            to: value.translation)
+      }
+        .onEnded { value in
+          self.release(element,
+                   at: value.predictedEndTranslation)
+      }
+  }
+  
+  func tapAction(_ element: CardPresentable) {
+    if configuration.interaction != .drag {
+      moveToBack(element)
+    }
+  }
 }
 
 extension StackModel: Selectable { }

@@ -3,13 +3,14 @@
 import CoreGraphics
 
 public struct StackConfiguration {
-  public var firstScale:      CGFloat = 0.9
-  public var secondScale:     CGFloat = 0.8
-  public var dragOffset:      CGFloat = 45
-  public var minimumVelocity: CGFloat = 350
-  public var maximumDistance: CGFloat = 450
-  public var movementType:    MovementType = .free
-  public var disabled :       Bool = false
+  public var firstScale:      CGFloat
+  public var secondScale:     CGFloat
+  public var dragOffset:      CGFloat
+  public var minimumVelocity: CGFloat
+  public var maximumDistance: CGFloat
+  public var movementType:    MovementType
+  public var disabled :       Bool
+  public var interaction:     Interaction
   
   public enum MovementType {
     case horizontal
@@ -25,13 +26,20 @@ public struct StackConfiguration {
     }
   }
   
+  public enum Interaction {
+    case tap
+    case drag
+    case both
+  }
+  
   public init(firstScale:      CGFloat = 0.9,
               secondScale:     CGFloat = 0.8,
               dragOffset:      CGFloat = 45,
               minimumVelocity: CGFloat = 350,
               maximumDistance: CGFloat = 450,
-              movementType:    MovementType = .free,
-              disabled :       Bool = false) {
+              movementType:    MovementType = .horizontal,
+              disabled:        Bool = false,
+              interaction:     Interaction = .both) {
     self.firstScale = firstScale
     self.secondScale = secondScale
     self.dragOffset = dragOffset
@@ -39,5 +47,6 @@ public struct StackConfiguration {
     self.maximumDistance = maximumDistance
     self.movementType = movementType
     self.disabled = disabled
+    self.interaction = interaction
   }
 }
